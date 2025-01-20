@@ -1,3 +1,8 @@
+@font-face {
+	font-family: 'Noto Color Emoji';
+	src: url('fonts/NotoColorEmoji.ttf');
+}
+
 @media (max-width: 1305px) and (orientation:landscape) {
 	body {
 		zoom: 100%;
@@ -22,6 +27,12 @@
 	}
 }
 
+:root {
+	--main-bg-color: #443344;
+	--element-bg-color: #332233;
+	--startgg-set-bg-color: #336;
+}
+
 .stroke {
 }
 
@@ -31,7 +42,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	gap: 0.5em;
-	background-color: #443344;
+	background-color: var(--main-bg-color);
 	font-family: sans-serif;
 	color: white;
 }
@@ -175,16 +186,8 @@ button:disabled {
 }
 
 #top-label {
-	background-color: #332233;
+	background-color: var(--element-bg-color);
 	padding: 5px 20px;
-}
-
-#left-label {
-	background-color: #442222;
-}
-
-#right-label {
-	background-color: #222244;
 }
 
 /* HEADER */
@@ -201,7 +204,7 @@ button:disabled {
 	padding: 0.5em;
 	display: flex;
 	align-items: center;
-	background-color: #332233;
+	background-color: var(--element-bg-color);
 	border-radius: 5px;
 	gap: 0.5em;
 }
@@ -238,7 +241,7 @@ button:disabled {
 	display: inline-block;
 	background: #444444;
 	color: #fff;
-	width: 180px;
+	width: 160px;
 	border: none;
 	border-radius: 5px;
 	box-shadow: 0px 4px 2px #202020;
@@ -252,17 +255,26 @@ button:disabled {
 	text-align: left;
 }
 
+.column.stock {
+	gap: 8px;
+}
+
+.stock-icon {
+	image-rendering: pixelated;
+}
+
 .stock-icon.actual {
-	width: 30px;
-	height: 30px;
+	width: 24px;
+	height: 24px;
 	text-align: center;
 }
 
 .score.actual {
 	font-size: 32px;
-	width: 20px;
+	width: 22px;
+	height: 40px;
 	margin: 0px 5px 0px 5px;
-	padding: 5px 10px 5px 10px;
+	padding: 5px 5px;
 	appearance: none;
 	-webkit-appearance: none;
 	display: inline-block;
@@ -278,7 +290,7 @@ button:disabled {
 
 input.startgg.display {
 	background-color: #fff;
-	color: #332233;
+	color: var(--element-bg-color);
 	font-size: 11px;
 	height: 16px;
 	width: 80px;
@@ -308,7 +320,7 @@ input.startgg.display {
 	flex-direction: column;
 	gap: 0.5em;
 	border-radius: 5px;
-	background-color: #332233;
+	background-color: var(--element-bg-color);
 	padding: 5px;
 	color: #FFF;
 }
@@ -367,11 +379,13 @@ input.pronouns {
 
 select.flag {
 	font-size: 28px;
-	width: 50px;
+	width: 45px;
 	padding: 0 5px;
 	text-align: left;
+	background: white;
 	color: #FFF;
 	border: none;
+	font-family: sans-serif, 'Noto Color Emoji';
 }
 
 select.flag>option {
@@ -408,6 +422,7 @@ select.flag>option:disabled {
 .csp.change {
 	width: 68px;
 	height: 93px;
+	border-radius: 5px;
 }
 
 .score {
@@ -433,6 +448,7 @@ select.flag>option:disabled {
 
 #middle-row {
 	justify-content: center;
+	gap: 5em;
 }
 
 /* Seating */
@@ -441,15 +457,15 @@ select.flag>option:disabled {
 	justify-content: center;
 	align-items: center;
 	gap: 0.5em;
-	background-color: #332233;
-	height: 80px;
+	background-color: var(--element-bg-color);
+	height: 90px;
 }
 
 .seat {
 	background-color: #674467;
-	padding: 10px;
+	padding: 5px;
 	border-radius: 5px;
-	gap: 0.5em;
+	gap: 0.2em;
 	width: 110px;
 }
 
@@ -492,12 +508,12 @@ select.flag>option:disabled {
 #data-wrapper {
 	justify-content: center;
 	align-items: center;
-	background-color: #332233;
+	background-color: var(--element-bg-color);
 	gap: 0.5em;
 }
 
 #data-wrapper input {
-	width: 132px;
+	width: 125px;
 	height: 18px;
 	font-size: 14px;
 }
@@ -528,7 +544,7 @@ select.flag>option:disabled {
 
 #caster-wrapper {
 	align-items: center;
-	background-color: #332233;
+	background-color: var(--element-bg-color);
 	border-radius: 5px;
 	gap: 0.5em;
 }
@@ -556,7 +572,7 @@ select.flag>option:disabled {
 #obs-wrapper {
 	display: none;
 	align-items: center;
-	background-color: #332233;
+	background-color: var(--element-bg-color);
 	border-radius: 5px;
 }
 
@@ -573,40 +589,10 @@ select.flag>option:disabled {
 
 /* start.gg */
 
-#load-tournament-data {
-	display: flex;
-	display: none;
-	align-items: center;
-	justify-content: center;
-	background-color: #6d4f6d;
-	border-radius: 5px;
-}
-
-#load-tournament-data>select {
-	font-size: 14px;
-	padding: 5px;
-}
-
-input.timecode {
-	font-size: 14px;
-	padding: 5px;
-}
-
-button.timecode {
-	font-size: 10px;
-	padding: 5px;
-}
-
-#load-tournament-data>* {
-	margin: 10px;
-}
-
-/* startgg bottom */
-
 #startgg-wrapper {
 	display: flex;
 	align-items: center;
-	background-color: #332233;
+	background-color: var(--element-bg-color);
 	border-radius: 5px;
 	gap: 0.5em;
 }
@@ -631,13 +617,7 @@ button.timecode {
 	padding: 3px 3px 2px 3px;
 }
 
-#get-unfinished-sets {
-	display: none;
-}
-
-#get-all-sets {
-	background-color: #FF9999;
-	border-bottom: 2px solid #AA4444;
+#get-sets {
 	display: none;
 }
 
@@ -761,7 +741,7 @@ span.stage {
 	align-items: center;
 	justify-content: center;
 	height: 80px;
-	background-color: #336;
+	background-color: var(--startgg-set-bg-color);
 	border-radius: 5px;
 	padding: 5px;
 }
