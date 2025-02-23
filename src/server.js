@@ -1,6 +1,8 @@
 //and here we go...
 const express = require("express");
 var favicon = require('serve-favicon');
+const { spawn } = require('child_process');
+const process = require('process');
 
 const hbs = require("hbs");
 const cors = require('cors');
@@ -328,17 +330,26 @@ app.get(`/vs`, (req, res) => {
     res.sendFile(charInfo.getVs(character, colour, side));
 });
 
-/* START APP */
+function open(url) {
+    // https://stackoverflow.com/a/49013356
+    const start = (process.platform === 'darwin' ? 'open': process.platform === 'win32' ? 'start': 'xdg-open');
+    // Parse URL. This bails if the setting isn't a valid url
+    const parsedUrl = new URL(url);
+    const proc = spawn(start, [parsedUrl.toString()]);
+    proc.on('error', console.error);
+}
 
+/* START APP */
 async function startApp() {
     logging.log("Starting app")
     server?.close();
     await loadObs()
     server = app.listen(config.Web.Port, () => {
         logging.log("Web application listening on port " + config.Web.Port)
-        //open(`http://127.0.0.1:${config.web.port}`) //open is no longer used due to concerns, keeping this here to find a better alternative 
     });
     watch(config['Slippi']['Directory'], true);
+    open(`http://127.0.0.1:${config.Web.Port}`);
+
 }
 
 process.on('exit', function () {
